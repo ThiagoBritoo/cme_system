@@ -23,7 +23,7 @@ class MaterialViewSet(viewsets.ModelViewSet):
     serializer_class = MaterialSerializer
 
     @action(detail=True, methods=['post'])
-    def advance_stage(self, pk=None):
+    def advance_stage(self, request, pk=None):
         material = self.get_object()
         try:
             material.advance_stage()
@@ -96,11 +96,10 @@ def generate_failed_report_xlsx(request):
     ws.append(headers)
 
     failures = Failure.objects.all()
-
     for failure in failures:
         row = [
-            failure.material.name,
-            failure.stage.name,
+            failure.material.name if failure.material else 'Desconhecido',
+            failure.stage.name if failure.stage else 'Desconhecido',
             failure.description,
             failure.timestamp.strftime('%H:%M:%S %d/%m/%Y')
         ]

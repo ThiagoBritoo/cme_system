@@ -46,10 +46,13 @@ function CompletedList() {
   return (
     <div>
       <h2>Materiais Concluídos</h2>
+      <button className="report-button">
+        <a href="http://localhost:8000/relatorio/concluidos/" style={{ textDecoration: 'none', color: 'white' }}>Gerar Relatório PDF</a>
+      </button>
       <div className="material-grid">
         {materials.map(material => (
           <div key={material.id} className="material-card">
-         <h3>
+            <h3>
               <Link to={`/material/${material.id}`} className="link">
                 {material.name}
               </Link>
@@ -59,9 +62,6 @@ function CompletedList() {
           </div>
         ))}
       </div>
-      <button className="report-button">
-        <a href="/relatorio/concluidos/" style={{ textDecoration: 'none', color: 'white' }}>Gerar Relatório PDF</a>
-      </button>
     </div>
   );
 }

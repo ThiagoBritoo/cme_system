@@ -56,6 +56,9 @@ function FailureList() {
   return (
     <div>
       <h2>Falhas</h2>
+      <button className="report-button">
+        <a href="http://localhost:8000/relatorio/falhas/" style={{ textDecoration: 'none', color: 'white' }}>Gerar Relatório Excel</a>
+      </button>
       <div className="material-grid">
         {failures.map(failure => (
           <div key={failure.id} className="material-card">
@@ -70,9 +73,6 @@ function FailureList() {
           </div>
         ))}
       </div>
-      <button className="report-button">
-        <a href="/relatorio/falhas/" style={{ textDecoration: 'none', color: 'white' }}>Gerar Relatório Excel</a>
-      </button>
     </div>
   );
 }
